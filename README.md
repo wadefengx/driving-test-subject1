@@ -32,10 +32,11 @@
 - 答错的题自动注入 SM-2 复习队列
 
 ### ❌ 错题重练
-复习 SM-2 算法判定**今日到期**的题目：
-- 答对推进间隔（间隔变长，未来少出现）
-- 答错重置间隔（明天再来）
-- 全部答对后首页"今日待复习"清零
+只练**错题本**中的题，与 SM-2 复习队列完全分离：
+- 任何模式答错自动收录（含模考未答题，未答按答错处理，与真实考试一致）
+- 任意模式答对一次即移出错题本
+- 出题时 SM-2 今日到期的错题优先，答错重置间隔（明天再来）
+- 全部攻克后首页错题数清零
 
 ## 🧠 SM-2 间隔重复算法原理
 
@@ -62,6 +63,7 @@
 
 所有数据存储在浏览器本地（localStorage + Cache API），不上传任何服务器：
 - SM-2 间隔记录（每题的 ease/interval/reps/due）
+- 错题本（答错自动收录，答对一次即移出）
 - 答题统计（累计正确率、模考历史、连续学习天数）
 - 图片缓存（Cache API）
 
@@ -84,14 +86,19 @@ python3 scripts/build_html.py    # 生成 index.html / manifest.json / sw.js / �
 
 ```
 科目一/
+├── src/                      ★ 源码（纳入版本管理）
+│   ├── index.template.html   页面骨架（含构建占位符）
+│   ├── style.css             样式
+│   ├── app.js                应用逻辑（三模式 + SM-2 + 错题本）
+│   └── sw.template.js        Service Worker
 ├── scripts/
-│   ├── fetch_bank.py       下载原始题库
-│   ├── classify.py         规范化+去重+章节分类+时效修订
-│   └── build_html.py       ★ 构建：输出 index.html/manifest/sw.js/图标
+│   ├── fetch_bank.py         下载原始题库
+│   ├── classify.py           规范化+去重+章节分类+时效修订
+│   └── build_html.py         ★ 构建：读取 src/ 内联打包，输出 index.html/manifest/sw.js/图标
 ├── data/
-│   └── bank.json           标准题库（2115题，数据源）
+│   └── bank.json             标准题库（2115题，数据源）
 ├── .github/workflows/
-│   └── deploy.yml          GitHub Actions 自动构建+部署 Pages
+│   └── deploy.yml            GitHub Actions 自动构建+部署 Pages
 └── .gitignore
 ```
 
