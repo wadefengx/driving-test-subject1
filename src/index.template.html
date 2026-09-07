@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#1e80ff">
+<script>
+(function () {
+  try {
+    var saved = localStorage.getItem("kemuyi_theme");
+    document.documentElement.dataset.theme = saved || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  } catch (e) {}
+})();
+</script>
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="科目一">
@@ -18,6 +26,7 @@
 
 <!-- ============ 封面页 ============ -->
 <section id="page-cover" class="wrap cover">
+  <button class="theme-toggle" id="btn-theme" type="button" aria-label="切换深色主题" title="切换深色主题">🌙</button>
   <div class="logo">🚗</div>
   <h1>C1 驾照 · 科目一</h1>
   <p class="sub">智能刷题 + 模拟考试 · 离线可用</p>
@@ -129,7 +138,7 @@
   <div class="wrap result">
     <div class="score-ring">
       <svg width="160" height="160">
-        <circle cx="80" cy="80" r="70" fill="none" stroke="#f0f1f5" stroke-width="12"/>
+        <circle cx="80" cy="80" r="70" fill="none" stroke="var(--gray-2)" stroke-width="12"/>
         <circle id="score-arc" cx="80" cy="80" r="70" fill="none" stroke="#07c160" stroke-width="12" stroke-linecap="round" stroke-dasharray="0 440"/>
       </svg>
       <div class="num"><b id="r-score">0</b><span>分</span></div>

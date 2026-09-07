@@ -71,6 +71,18 @@ function todayStr() {
 var LS_SM2 = "kemuyi_sm2";
 var LS_WRONG = "kemuyi_wrong";
 var LS_STATS = "kemuyi_stats";
+var LS_THEME = "kemuyi_theme";
+
+function setTheme(theme, persist) {
+  document.documentElement.dataset.theme = theme;
+  var dark = theme === "dark";
+  $("btn-theme").textContent = dark ? "☀️" : "🌙";
+  $("btn-theme").setAttribute("aria-label", dark ? "切换浅色主题" : "切换深色主题");
+  $("btn-theme").title = dark ? "切换浅色主题" : "切换深色主题";
+  if (persist) {
+    try { localStorage.setItem(LS_THEME, theme); } catch (e) {}
+  }
+}
 
 function loadJSON(key, fallback) {
   try {
@@ -410,6 +422,9 @@ function goHome() {
 
 $("btn-practice").onclick = startPractice;
 $("btn-exam").onclick = startExam;
+$("btn-theme").onclick = function () {
+  setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark", true);
+};
 $("btn-wrong").onclick = function () {
   if ($("btn-wrong").classList.contains("disabled")) return;
   startWrong();
@@ -980,6 +995,7 @@ if ("serviceWorker" in navigator) {
 }
 
 /* ============================== 启动 ============================== */
+setTheme(document.documentElement.dataset.theme || "light", false);
 migrateWrongBook();
 refreshCover();
 show("page-cover");

@@ -82,6 +82,10 @@ python3 scripts/build_html.py    # 生成 index.html / manifest.json / sw.js / �
 **本地预览**：构建后双击 `index.html` 即可（功能正常，但 Service Worker 仅在 http/https 下生效）。
 完整 PWA 体验需起本地服务：`python3 -m http.server` 后访问 `http://localhost:8000`。
 
+### 主题
+
+首次打开会跟随系统浅色/深色偏好；首页右上角的 🌙 / ☀️ 按钮可手动切换，选择会保存在当前浏览器中。因此在 VS Code 深色环境预览时可直接使用深色界面。
+
 ## 文件结构
 
 ```

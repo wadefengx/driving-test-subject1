@@ -199,3 +199,37 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   .mode-card{min-height:104px;padding:18px 10px}
   .mode-card .ic{font-size:30px}
 }
+
+.theme-toggle{position:absolute;top:calc(16px + var(--safe-top));right:16px;width:38px;height:38px;border:1px solid var(--gray-3);border-radius:50%;background:#fff;color:var(--gray-7);font-size:18px;line-height:1}
+button:focus-visible{outline:3px solid rgba(30,128,255,.45);outline-offset:2px}
+
+/* 深色模式只覆盖视觉 token，学习数据与答题逻辑不受影响。 */
+html[data-theme="dark"]{color-scheme:dark;--blue-light:#142d50;--gray-1:#171a21;--gray-2:#232832;--gray-3:#3a4352;--gray-5:#919bab;--gray-6:#b4bdca;--gray-7:#d8dee8;--gray-8:#f5f7fa;--shadow:0 2px 12px rgba(0,0,0,.28)}
+html[data-theme="dark"] .theme-toggle,
+html[data-theme="dark"] .mode-card,
+html[data-theme="dark"] .stats-row,
+html[data-theme="dark"] .btn.ghost,
+html[data-theme="dark"] .btn.danger,
+html[data-theme="dark"] .rule-box,
+html[data-theme="dark"] .exam-header,
+html[data-theme="dark"] .opt,
+html[data-theme="dark"] .feedback .exp,
+html[data-theme="dark"] .sheet,
+html[data-theme="dark"] .sheet-grid button,
+html[data-theme="dark"] .result .summary .item,
+html[data-theme="dark"] .review-filter button,
+html[data-theme="dark"] .rv-item,
+html[data-theme="dark"] .dl-box{background:#20252f}
+html[data-theme="dark"] .mode-card.wrong{background:linear-gradient(135deg,#30231f,#20252f);border-color:#704431}
+html[data-theme="dark"] .info-box{background:#352f18;border-color:#75621e;color:#e2ce82}
+html[data-theme="dark"] .info-box b,
+html[data-theme="dark"] .feedback .updated,
+html[data-theme="dark"] .rv-updated{color:#f0ca69}
+html[data-theme="dark"] .feedback.right{background:#173c2b;border-color:#28754e}
+html[data-theme="dark"] .feedback.wrong{background:#472527;border-color:#914447}
+html[data-theme="dark"] .mode-badge.exam{background:#3b2b24}
+html[data-theme="dark"] .mode-badge.wrong{background:#432629}
+html[data-theme="dark"] .q-tag.judge{background:#2f2549}
+html[data-theme="dark"] .feedback .updated,
+html[data-theme="dark"] .rv-updated{background:#352f18;border-color:#75621e}
+html[data-theme="dark"] .rv-exp{background:var(--gray-1)}
